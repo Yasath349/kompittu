@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap Link
 Sitemap: https://kompittu.com/sitemap.xml

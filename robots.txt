@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap Link
-Sitemap: https://kompitturestaurant.lk/sitemap.xml
+Sitemap: https://kompittu.com/sitemap.xml

@@ -1347,6 +1347,17 @@
                 margin-bottom: 25px;
             }
 
+            /* Specialties Sub-Tabs Mobile Fix */
+            .specialties-tabs {
+                gap: 8px;
+                margin-bottom: 25px;
+            }
+
+            .tab-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+
             .menu-grid {
                 grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
                 gap: 20px;
@@ -1357,11 +1368,17 @@
                 border-radius: 16px;
                 /* Avoid buggy 3D tilt translations on touch screens */
                 transform: none !important;
+                transform-style: flat !important;
+                perspective: none !important;
                 transition: transform 0.3s ease, border-color 0.3s ease;
             }
 
             .menu-card:hover {
                 transform: translateY(-4px) !important;
+            }
+
+            .menu-info {
+                transform: none !important;
             }
 
             .menu-img-container {

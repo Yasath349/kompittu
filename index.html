@@ -1,0 +1,2602 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kompittu Restaurant & Bakers | Anuradhapura</title>
+    <meta name="description" content="Experience delicious Sri Lankan cuisine, traditional bakery treats, and unforgettable flavours prepared with passion in the heart of Anuradhapura.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Dark Theme (Default) */
+            --bg-base: #050505;
+            --bg-surface: #0f0f12;
+            --text-main: #f5f5f7;
+            --text-muted: #a0a0ab;
+            --accent-gold: #d4af37;
+            --accent-orange: #ff7e36;
+            --glass-bg: rgba(15, 15, 18, 0.7);
+            --glass-border: rgba(212, 175, 55, 0.15);
+            --shadow-glow: 0 8px 32px 0 rgba(212, 175, 55, 0.08);
+            --nav-bg: rgba(5, 5, 5, 0.85);
+            --glow-color: rgba(212, 175, 55, 0.3);
+            --card-glow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        [data-theme="light"] {
+            /* Light Theme */
+            --bg-base: #faf9f6;
+            --bg-surface: #ffffff;
+            --text-main: #2d2a26;
+            --text-muted: #5d5a56;
+            --accent-gold: #b8860b;
+            --accent-orange: #e65c00;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(184, 134, 11, 0.22);
+            --shadow-glow: 0 8px 32px 0 rgba(0, 0, 0, 0.06);
+            --nav-bg: rgba(250, 249, 246, 0.9);
+            --glow-color: rgba(184, 134, 11, 0.15);
+            --card-glow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px; /* Compenses for sticky header height during anchor jumps */
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Common Elements */
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-orange));
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 15px var(--glow-color);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, var(--accent-orange), var(--accent-gold));
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--glow-color);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1.5px solid var(--accent-gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-gold);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--glow-color);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .navbar.scrolled {
+            padding: 15px 5%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            filter: drop-shadow(0 2px 8px rgba(212,175,55,0.25));
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .logo:hover {
+            filter: drop-shadow(0 4px 16px rgba(212,175,55,0.45));
+            transform: scale(1.03);
+        }
+
+        .logo img {
+            height: 52px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent-gold);
+            transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg) scale(1.1);
+            color: var(--accent-gold);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 5%;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            transform: scale(1.05);
+            transition: transform 0.1s ease-out;
+            background-image: url('Hero.webp');
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.65), rgba(5,5,5,0.85));
+            z-index: -1;
+        }
+
+        [data-theme="light"] .hero-overlay {
+            background: linear-gradient(to bottom, rgba(250,249,246,0.5), rgba(250,249,246,0.85));
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.3s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            line-height: 1.15;
+            font-weight: 700;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        [data-theme="dark"] .hero-title {
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .hero-title {
+            color: #1a1a1a;
+            text-shadow: none;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 45px;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Floating elements */
+        .float-el {
+            position: absolute;
+            z-index: 0;
+            animation: float 8s ease-in-out infinite;
+            padding: 15px 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(4deg); }
+        }
+
+        .float-1 { top: 25%; left: 8%; animation-delay: 0s; }
+        .float-2 { bottom: 25%; right: 8%; animation-delay: -4s; }
+
+        /* About Section */
+        .about {
+            padding: 120px 5%;
+            position: relative;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 70px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-img-wrapper {
+            position: relative;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: var(--shadow-glow);
+            transition: transform 0.5s ease;
+        }
+
+        .about-img-wrapper:hover .about-img {
+            transform: scale(1.02);
+        }
+
+        .about-stats {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            padding: 25px 35px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            min-width: 320px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .about-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .about-desc {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(var(--accent-gold), 0.05);
+            border: 1px solid rgba(var(--accent-gold), 0.1);
+            font-weight: 500;
+        }
+
+        .feature-icon {
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 120px 5%;
+            background: var(--bg-surface);
+            position: relative;
+        }
+
+        .menu-category {
+            margin-bottom: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .menu-category-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--accent-orange);
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 15px;
+            font-weight: 700;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+        }
+
+        .menu-card:hover {
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .menu-img-container {
+            width: 100%;
+            height: 180px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-card:hover .menu-img {
+            transform: scale(1.08);
+        }
+        
+        .menu-info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            transform: translateZ(20px);
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .menu-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .menu-price {
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+            white-space: nowrap;
+        }
+
+        .menu-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .menu-price-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .price-badge {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.15);
+            padding: 3px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            white-space: nowrap;
+        }
+
+        .price-badge.lrg {
+            color: var(--accent-orange);
+            background: rgba(255, 126, 54, 0.15);
+            border-color: rgba(255, 126, 54, 0.25);
+        }
+
+        /* Specialties Tabs navigation */
+        .specialties-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 45px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+            box-shadow: 0 4px 15px var(--glow-color);
+        }
+
+        .tab-panel {
+            display: none;
+            opacity: 0;
+        }
+
+        .tab-panel.active {
+            display: block;
+            opacity: 1;
+            animation: tabFadeIn 0.5s ease forwards;
+        }
+
+        @keyframes tabFadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 120px 5%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .reviews-slider {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reviews-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .review-card {
+            min-width: 380px;
+            scroll-snap-align: center;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .review-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .stars {
+            color: var(--accent-gold);
+            letter-spacing: 3px;
+            font-size: 1.1rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--text-main);
+            flex-grow: 1;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .reviewer {
+            font-weight: 600;
+            color: var(--accent-orange);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reviewer::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--accent-orange);
+            display: inline-block;
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 120px 5%;
+            background: var(--bg-surface);
+        }
+
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 45px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+            box-shadow: 0 4px 15px var(--glow-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            grid-auto-rows: 280px;
+            grid-auto-flow: dense;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay span {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5,5,5,0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(15px);
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-img {
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 16px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+            transform: scale(0.95);
+            transition: transform 0.4s ease;
+        }
+
+        .lightbox.active .lightbox-img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px; right: 40px;
+            color: #fff;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.2) rotate(90deg);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 5%;
+            position: relative;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px;
+        }
+
+        .contact-card {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .contact-info h4 {
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .map-container {
+            border-radius: 24px;
+            overflow: hidden;
+            height: 100%;
+            min-height: 450px;
+            position: relative;
+            box-shadow: var(--shadow-glow);
+            border: 1px solid var(--glass-border);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(100%) invert(90%) contrast(80%);
+        }
+
+        [data-theme="light"] .map-container iframe {
+            filter: none;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 100px 5%;
+            text-align: center;
+            background: linear-gradient(rgba(5,5,5,0.75), rgba(5,5,5,0.75)), url('Hero.webp') center/cover;
+            position: relative;
+            background-attachment: fixed;
+        }
+
+        [data-theme="light"] .cta {
+            background: linear-gradient(rgba(250,249,246,0.8), rgba(250,249,246,0.8)), url('Hero.webp') center/cover;
+            background-attachment: fixed;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .cta p {
+            color: var(--text-muted);
+            margin-bottom: 45px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.15rem;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-surface);
+            padding: 60px 5% 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(212,175,55,0.3));
+        }
+
+        .footer-tagline {
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .footer-title {
+            font-size: 1.25rem;
+            color: var(--accent-orange);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            transition: color 0.3s;
+            font-weight: 300;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* Responsive Design System (PC vs Mobile Optimization) */
+        
+        /* Desktop/PC Specific Tweaks (Screens 1024px and above) */
+        @media (min-width: 1024px) {
+            .navbar {
+                padding: 25px 8%;
+            }
+            .navbar.scrolled {
+                padding: 15px 8%;
+            }
+            .hero-content {
+                padding: 0 40px;
+            }
+            .about-grid, .contact-container, .footer-content {
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            /* 3D tilt is only active on desktop/hover capable screens */
+            .menu-card {
+                cursor: pointer;
+            }
+        }
+
+        /* Large Tablets / Small Desktops (max-width: 1024px) */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.8rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            .about-stats {
+                bottom: -20px;
+                right: 0;
+                left: 0;
+                margin: 0 auto;
+                width: 90%;
+            }
+            .contact-container {
+                grid-template-columns: 1fr;
+                padding: 40px;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            .map-container {
+                min-height: 350px;
+            }
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+            .footer-info {
+                grid-column: span 2;
+            }
+        }
+
+        /* Mobile Devices (max-width: 768px) */
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 80px 20px;
+            }
+            
+            /* Section padding reduction for mobile */
+            .about, .menu, .reviews, .gallery, .contact, .cta {
+                padding: 80px 24px;
+            }
+
+            .section-title {
+                font-size: 2.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 2.5rem;
+                padding: 0 10px;
+            }
+
+            /* Optimized Mobile Navbar */
+            .navbar {
+                padding: 15px 24px;
+                background: rgba(5, 5, 5, 0.75);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .logo img {
+                height: 42px;
+            }
+
+            .logo-name {
+                font-size: 1.4rem;
+            }
+
+            .nav-right {
+                gap: 15px;
+            }
+
+            .theme-toggle {
+                margin-right: 0;
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                width: 38px;
+                height: 38px;
+                font-size: 1.2rem;
+            }
+
+            /* Slide-out mobile menu panel */
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--bg-surface);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                border-left: 1px solid var(--glass-border);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                padding: 40px;
+                z-index: 999;
+                transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.3rem;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
+
+            /* Hero Optimization on Mobile */
+            .hero {
+                min-height: 100vh;
+                height: auto;
+                padding: 120px 24px 80px;
+                display: flex;
+                align-items: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.25;
+                margin-bottom: 15px;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 35px;
+                padding: 0 10px;
+            }
+
+            /* Hide floating tags on mobile to avoid overlapping */
+            .float-el {
+                display: none !important;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+                gap: 15px;
+            }
+
+            .hero-btns .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 15px 30px;
+            }
+
+            /* About Section Mobile Fixes */
+            .about-img {
+                height: 300px;
+                border-radius: 16px;
+            }
+
+            .about-stats {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                margin: 25px auto 0 auto;
+                width: 100%;
+                max-width: 450px;
+                padding: 20px;
+                border-radius: 16px;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+                box-shadow: var(--shadow-glow);
+            }
+
+            .stat-num {
+                font-size: 1.8rem;
+            }
+
+            .about-content h2 {
+                font-size: 2rem;
+                text-align: center;
+                line-height: 1.3;
+            }
+
+            .about-desc {
+                font-size: 0.98rem;
+                text-align: center;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            /* Menu Grid Mobile Viewports */
+            .menu-category-title {
+                font-size: 1.6rem;
+                margin-bottom: 25px;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 20px;
+            }
+
+            .menu-card {
+                padding: 15px;
+                border-radius: 16px;
+                /* Avoid buggy 3D tilt translations on touch screens */
+                transform: none !important;
+                transition: transform 0.3s ease, border-color 0.3s ease;
+            }
+
+            .menu-card:hover {
+                transform: translateY(-4px) !important;
+            }
+
+            .menu-img-container {
+                height: 160px;
+                border-radius: 12px;
+            }
+
+            .menu-name {
+                font-size: 1.15rem;
+            }
+
+            .menu-price {
+                font-size: 1.1rem;
+            }
+
+            .menu-price-group {
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+                margin-top: 5px;
+            }
+
+            /* Review Slider Mobile Settings */
+            .review-card {
+                min-width: 85vw;
+                padding: 24px;
+                border-radius: 16px;
+                gap: 15px;
+            }
+
+            .review-text {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            /* Gallery Mobile Masonry Settings */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                grid-auto-rows: 140px;
+            }
+
+            .gallery-item.large, .gallery-item.wide {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .gallery-overlay {
+                padding: 15px;
+            }
+
+            .gallery-overlay h4 {
+                font-size: 1rem;
+            }
+
+            .gallery-overlay span {
+                font-size: 0.75rem;
+            }
+
+            /* Contact and Map settings */
+            .contact-container {
+                padding: 24px;
+                border-radius: 16px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-item {
+                gap: 15px;
+            }
+
+            .contact-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+
+            .map-container {
+                min-height: 280px;
+                border-radius: 16px;
+            }
+
+            /* CTA Mobile */
+            .cta h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta p {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+
+            /* Footer Mobile */
+            .footer {
+                padding: 50px 24px 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .footer-info {
+                grid-column: span 1;
+            }
+
+            .footer-title {
+                margin-bottom: 15px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding-top: 20px;
+            }
+        }
+
+        /* Small Phones Specific (max-width: 480px) */
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 180px;
+            }
+            .hero-title {
+                font-size: 2.1rem;
+            }
+            .about-stats {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#home" class="logo">
+            <img src="logo.png" alt="Kompittu Restaurant & Bakers Logo" loading="eager">
+            <span class="logo-name">Kompittu</span>
+        </a>
+        
+        <div class="nav-right">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="glass float-el float-1">
+            <i class="fa-solid fa-star" style="color: var(--accent-gold);"></i> <span>4.9 Average Rating</span>
+        </div>
+        <div class="glass float-el float-2">
+            <i class="fa-solid fa-leaf" style="color: #4caf50;"></i> <span>Traditional Sri Lankan Taste</span>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-tag">Best Food Destination In Anuradhapura</div>
+            <h1 class="hero-title">Authentic Sri Lankan Flavours, Freshly Crafted Every Day</h1>
+            <p class="hero-subtitle">Experience delicious Sri Lankan cuisine, traditional bakery treats, and unforgettable flavours prepared with passion in the heart of Anuradhapura.</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn btn-primary">Explore Menu <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="https://maps.app.goo.gl/txLKgsPmqnTP5dNi8" target="_blank" class="btn btn-outline glass">Get Directions <i class="fa-solid fa-map-location-dot"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about reveal" id="about">
+        <div class="about-grid">
+            <div class="about-img-wrapper">
+                <img src="About.webp" alt="Bakery Items" class="about-img" loading="lazy" decoding="async">
+                <div class="about-stats glass">
+                    <div class="stat">
+                        <div class="stat-num counter" data-target="1500">0</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num counter" data-target="45">0</div>
+                        <div class="stat-label">Dishes Offered</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-content">
+                <h2 class="section-title" style="text-align: left;">Traditional Sri Lankan Flavours Combined With Modern Luxury</h2>
+                <p class="about-desc">Welcome to Kompittu Restaurant & Bakers, a local food destination in Anuradhapura serving authentic Sri Lankan cuisine and delicious bakery creations. We focus on fresh ingredients, generous portions, affordable prices, and friendly service to create a memorable dining experience.</p>
+                
+                <div class="about-features">
+                    <div class="feature-item">
+                        <i class="fa-solid fa-fire-burner feature-icon"></i>
+                        <span>Authentic Sri Lankan Food</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-bread-slice feature-icon"></i>
+                        <span>Fresh Bakery Items</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-tag feature-icon"></i>
+                        <span>Affordable Prices</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-heart-pulse feature-icon"></i>
+                        <span>Friendly Service</span>
+                    </div>
+                    <div class="feature-item" style="grid-column: span 2;">
+                        <i class="fa-solid fa-medal feature-icon"></i>
+                        <span>Local Favourite in Anuradhapura</span>
+                    </div>
+                </div>
+
+                <!-- Secondary statistics grid -->
+                <div style="display: flex; gap: 40px; margin-top: 35px; border-top: 1px solid var(--glass-border); padding-top: 25px;">
+                    <div class="stat" style="text-align: left;">
+                        <div class="stat-num counter" data-target="99">0</div>
+                        <div class="stat-label">Positive Reviews %</div>
+                    </div>
+                    <div class="stat" style="text-align: left;">
+                        <div class="stat-num counter" data-target="12">0</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu reveal" id="menu">
+        <h2 class="section-title">Interactive Showcase Menu</h2>
+        <p class="section-subtitle">Discover the rich and diverse flavors of Sri Lanka. Hover over cards for 3D premium tilt.</p>
+
+        <!-- Category 1: Sri Lankan Specialties -->
+        <div class="menu-category">
+            <h3 class="menu-category-title">Sri Lankan Specialties</h3>
+            
+            <!-- Specialties Sub-Tabs -->
+            <div class="specialties-tabs">
+                <button class="tab-btn active" data-tab="fried-rice">Fried Rice</button>
+                <button class="tab-btn" data-tab="kottu">Kottu</button>
+                <button class="tab-btn" data-tab="noodles">Noodles</button>
+            </div>
+            
+            <!-- Fried Rice Tab Panel -->
+            <div class="tab-panel active" id="fried-rice">
+                <div class="menu-grid">
+                    <!-- Item 1 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Chicken Fried Rice.webp" alt="Chicken Fried Rice" class="menu-img" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Chicken Fried Rice</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 750</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1100</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Savory fried rice cooked with fresh chicken chunks, vegetables, and aromatic spices.</p>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Egg Fried Rice.webp" alt="Egg Fried Rice" class="menu-img" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Egg Fried Rice</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 600</span>
+                                    <span class="price-badge lrg">Lrg: Rs 950</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Fragrant fried rice loaded with scrambled eggs, green onions, and light soy sauce.</p>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Seafood Fried Rice.webp" alt="Seafood Fried Rice" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Seafood Fried Rice</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 900</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1580</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Delicious fried rice mixed with fresh prawns, cuttlefish, and premium seafood.</p>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Vegetable Fried Rice.webp" alt="Vegetable Fried Rice" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Vegetable Fried Rice</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 550</span>
+                                    <span class="price-badge lrg">Lrg: Rs 900</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Healthy and flavorful fried rice prepared with seasonal local garden vegetables.</p>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Mix Fried Rice.webp" alt="Mix Fried Rice" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Mix Fried Rice</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 1000</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1680</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Our special fried rice with a combination of chicken, seafood, egg, and fresh vegetables.</p>
+                        </div>
+                    </div>
+                    <!-- Item 6 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Mongolian Fried Rice.webp" alt="Mongolian Fried Rice" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Mongolian Fried Rice</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 900</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1300</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Spicy and smoky Mongolian-style wok-fried rice with a rich blend of sauces.</p>
+                        </div>
+                    </div>
+                    <!-- Item 7 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Beef Fried Rice.webp" alt="Beef Fried Rice" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Beef Fried Rice</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 950</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1500</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Hearty wok-fried rice loaded with tender seasoned beef slices and vegetables.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Kottu Tab Panel -->
+            <div class="tab-panel" id="kottu">
+                <div class="menu-grid">
+                    <!-- Item 1 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Chicken Kottu.webp" alt="Chicken Kottu" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Chicken Kottu</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 850</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1300</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Classic Sri Lankan street food made with shredded flatbread, chicken, egg, and rich curry gravy.</p>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Egg Kottu.webp" alt="Egg Kottu" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Egg Kottu</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 600</span>
+                                    <span class="price-badge lrg">Lrg: Rs 950</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Delicious mix of shredded flatbread, farm-fresh eggs, vegetables, and flavorful gravy.</p>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Cheese Kottu.webp" alt="Cheese Kottu" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Cheese Kottu</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 1030</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1580</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Creamy and decadent kottu roti loaded with melted cheese and fresh spices.</p>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Vegetable Kottu.webp" alt="Vegetable Kottu" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Vegetable Kottu</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 550</span>
+                                    <span class="price-badge lrg">Lrg: Rs 900</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Savory shredded flatbread tossed with fresh seasonal vegetables and local spices.</p>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Dolphin Kottu.webp" alt="Dolphin Kottu" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Dolphin Kottu</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 1030</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1580</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">A unique Sri Lankan kottu variation featuring larger chunks of flatbread, extra gravy, and hot chili.</p>
+                        </div>
+                    </div>
+                    <!-- Item 6 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Beef Kottu.webp" alt="Beef Kottu" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Beef Kottu</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 1000</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1580</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Flavorful and spicy kottu roti mixed with tender seasoned beef pieces and rich gravy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Noodles Tab Panel -->
+            <div class="tab-panel" id="noodles">
+                <div class="menu-grid">
+                    <!-- Item 1 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Chicken Noodles.webp" alt="Chicken Noodles" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Chicken Noodles</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 750</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1100</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Stir-fried noodles loaded with seasoned chicken strips, crisp vegetables, and light soy sauce.</p>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Seafood Noodles.webp" alt="Seafood Noodles" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Seafood Noodles</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 900</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1580</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Wok-tossed noodles mixed with fresh prawns, cuttlefish, and local seafood delights.</p>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Egg Noodles.webp" alt="Egg Noodles" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Egg Noodles</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 600</span>
+                                    <span class="price-badge lrg">Lrg: Rs 950</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Simple yet delicious stir-fried noodles with scrambled eggs and fresh garden vegetables.</p>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Vegetable Noodles.webp" alt="Vegetable Noodles" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Vegetable Noodles</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 550</span>
+                                    <span class="price-badge lrg">Lrg: Rs 900</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Classic wok-tossed noodles loaded with healthy shredded local vegetables.</p>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="menu-card glass">
+                        <div class="menu-img-container">
+                            <img src="Mix Noodles.webp" alt="Mix Noodles" class="menu-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="menu-info">
+                            <div class="menu-header">
+                                <span class="menu-name">Mix Noodles</span>
+                                <div class="menu-price-group">
+                                    <span class="price-badge">Reg: Rs 1000</span>
+                                    <span class="price-badge lrg">Lrg: Rs 1680</span>
+                                </div>
+                            </div>
+                            <p class="menu-desc">Premium combination noodles featuring chicken, seafood, egg, and vegetables.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 2: Bakery Collection -->
+        <div class="menu-category">
+            <h3 class="menu-category-title">Bakery Collection</h3>
+            <div class="menu-grid">
+                <!-- Item 1 -->
+                <div class="menu-card glass">
+                    <div class="menu-img-container">
+                        <img src="Bread.webp" alt="Bread" class="menu-img" loading="lazy" decoding="async">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">Bread</span>
+                            <span class="menu-price">Rs 150</span>
+                        </div>
+                        <p class="menu-desc">Freshly baked crusty local sandwich bread loaf with a soft, pillowy interior.</p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="menu-card glass">
+                    <div class="menu-img-container">
+                        <img src="Cream bun.webp" alt="Cream Bun" class="menu-img" loading="lazy" decoding="async">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">Cream Bun</span>
+                            <span class="menu-price">Rs 80</span>
+                        </div>
+                        <p class="menu-desc">Soft baked sweet bun filled with rich, creamy vanilla buttercream.</p>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="menu-card glass">
+                    <div class="menu-img-container">
+                        <img src="Egg bun.webp" alt="Malu Paan" class="menu-img" loading="lazy" decoding="async">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">Malu Paan</span>
+                            <span class="menu-price">Rs 100</span>
+                        </div>
+                        <p class="menu-desc">Traditional Sri Lankan triangular-folded soft bread bun stuffed with a spiced fish filling.</p>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="menu-card glass">
+                    <div class="menu-img-container">
+                        <img src="Vegetable bun.webp" alt="Vegetable Bun" class="menu-img" loading="lazy" decoding="async">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">Vegetable Bun</span>
+                            <span class="menu-price">Rs 120</span>
+                        </div>
+                        <p class="menu-desc">Baked soft bread bun stuffed with a flavorful mix of seasoned vegetables.</p>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="menu-card glass">
+                    <div class="menu-img-container">
+                        <img src="Fish bun.webp" alt="Fish Bun" class="menu-img" loading="lazy" decoding="async">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">Fish Bun</span>
+                            <span class="menu-price">Rs 120</span>
+                        </div>
+                        <p class="menu-desc">Local bakery classic stuffed with a hearty spiced mackerel and potato filling.</p>
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="menu-card glass">
+                    <div class="menu-img-container">
+                        <img src="Rolls.webp" alt="Rolls" class="menu-img" loading="lazy" decoding="async">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">Rolls</span>
+                            <span class="menu-price">Rs 100</span>
+                        </div>
+                        <p class="menu-desc">Crispy, golden-fried breadcrumbed roll filled with seasoned vegetables and spices.</p>
+                    </div>
+                </div>
+                <!-- Item 7 -->
+                <div class="menu-card glass">
+                    <div class="menu-img-container">
+                        <img src="Sausage bun.webp" alt="Sausage Bun" class="menu-img" loading="lazy" decoding="async">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">Sausage Bun</span>
+                            <span class="menu-price">Rs 100</span>
+                        </div>
+                        <p class="menu-desc">Delicious soft baked bread roll wrapping a premium savory chicken sausage.</p>
+                    </div>
+                </div>
+                <!-- Item 8 -->
+                <div class="menu-card glass">
+                    <div class="menu-img-container">
+                        <img src="Tea bun.webp" alt="Tea Bun" class="menu-img" loading="lazy" decoding="async">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">Tea Bun</span>
+                            <span class="menu-price">Rs 50</span>
+                        </div>
+                        <p class="menu-desc">Sweet, fluffy yeast bun - the perfect accompaniment to your hot cup of Ceylon tea.</p>
+                    </div>
+                </div>
+                <!-- Item 9 -->
+                <div class="menu-card glass">
+                    <div class="menu-img-container">
+                        <img src="Kimbula bun.webp" alt="Kimbula Bun" class="menu-img" loading="lazy" decoding="async">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">Kimbula Bun</span>
+                            <span class="menu-price">Rs 70</span>
+                        </div>
+                        <p class="menu-desc">Traditional crocodile-shaped sweet bread roll coated with crunchy sugar crystals.</p>
+                    </div>
+                </div>
+                <!-- Item 10 -->
+                <div class="menu-card glass">
+                    <div class="menu-img-container">
+                        <img src="Sandwich.webp" alt="Sandwich" class="menu-img" loading="lazy" decoding="async">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <span class="menu-name">Sandwich</span>
+                            <span class="menu-price">Rs 80</span>
+                        </div>
+                        <p class="menu-desc">Classic fresh sandwich made with soft sliced bread and a savory local filling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews reveal" id="reviews">
+        <h2 class="section-title">Customer Reviews</h2>
+        <p class="section-subtitle">Real experiences shared by our valued guests. Slide through to read more.</p>
+
+        <div class="reviews-slider" id="reviewsSlider">
+            <!-- Review 1 -->
+            <div class="review-card glass">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Had our best kothu roti so far in Sri Lanka at this little spot. They made it with what they called swordfish, which was very interesting and we thoroughly enjoyed it."</p>
+                <span class="reviewer">Arin Goswami</span>
+            </div>
+            <!-- Review 2 -->
+            <div class="review-card glass">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Good place to enjoy Sri Lankan food. Portions are satisfying, prices are reasonable, and service is friendly."</p>
+                <span class="reviewer">Prasad Siriwardana</span>
+            </div>
+            <!-- Review 3 -->
+            <div class="review-card glass">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Love this local restaurant with Sri Lankan food. We went here for breakfast lunch and dinner. The vegi rolls and roti's were delicious."</p>
+                <span class="reviewer">Herman Van den Bulck</span>
+            </div>
+            <!-- Review 4 -->
+            <div class="review-card glass">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Kom Pittu Restaurant is a great place for anyone looking for tasty food at a reasonable price. The dishes are delicious, portions are quite large, and the overall experience is truly value for money."</p>
+                <span class="reviewer">Shihan Senanayake</span>
+            </div>
+            <!-- Review 5 -->
+            <div class="review-card glass">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Little local hidden gem. If you are doing the temple site and looking for honest local food, this is the place to be."</p>
+                <span class="reviewer">Nina Thielemans</span>
+            </div>
+            <!-- Review 6 -->
+            <div class="review-card glass">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Really good food! Super fast service and friendly Staff."</p>
+                <span class="reviewer">Ruwaa Kitchen</span>
+            </div>
+            <!-- Review 7 -->
+            <div class="review-card glass">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Delicious food, we order vegetable, egg roti and egg kottu, nice service."</p>
+                <span class="reviewer">Mali</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery reveal" id="gallery">
+        <h2 class="section-title">Food & Atmosphere Gallery</h2>
+        <p class="section-subtitle">Take a visual tour of our culinary creations and traditional setup.</p>
+
+        <div class="gallery-filter">
+            <button class="filter-btn active" data-filter="all">All Photos</button>
+            <button class="filter-btn" data-filter="kottu">Kottu Collection</button>
+            <button class="filter-btn" data-filter="meals">Traditional Meals</button>
+            <button class="filter-btn" data-filter="bakery">Bakery Items</button>
+            <button class="filter-btn" data-filter="atmosphere">Atmosphere</button>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item large" data-category="atmosphere" onclick="openLightbox(this)">
+                <img src="Hero.webp" alt="Luxury Dinner Table" class="gallery-img" loading="lazy" decoding="async">
+                <div class="gallery-overlay">
+                    <h4>Luxury Dinner Feast</h4>
+                    <span>Atmosphere</span>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="kottu" onclick="openLightbox(this)">
+                <img src="swordfish_kothu.webp" alt="Swordfish Kottu Roti" class="gallery-img" loading="lazy" decoding="async">
+                <div class="gallery-overlay">
+                    <h4>Swordfish Kottu</h4>
+                    <span>Kottu Collection</span>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="bakery" onclick="openLightbox(this)">
+                <img src="vegi_rolls.webp" alt="Sweet Buns & Rolls" class="gallery-img" loading="lazy" decoding="async">
+                <div class="gallery-overlay">
+                    <h4>Vegi Rolls & Snacks</h4>
+                    <span>Bakery Items</span>
+                </div>
+            </div>
+            <div class="gallery-item wide" data-category="meals" onclick="openLightbox(this)">
+                <img src="About.webp" alt="Traditional Rice and Curry Setup" class="gallery-img" loading="lazy" decoding="async">
+                <div class="gallery-overlay">
+                    <h4>Red Rice & Curry Feast</h4>
+                    <span>Traditional Meals</span>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="kottu" onclick="openLightbox(this)">
+                <img src="egg_kottu.webp" alt="Egg Kottu Roti" class="gallery-img" loading="lazy" decoding="async">
+                <div class="gallery-overlay">
+                    <h4>Signature Egg Kottu</h4>
+                    <span>Kottu Collection</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Popup -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img src="" alt="Popup View" class="lightbox-img" id="lightboxImg">
+    </div>
+
+    <!-- Contact & Location -->
+    <section class="contact reveal" id="contact">
+        <h2 class="section-title">Location & Contact</h2>
+        <p class="section-subtitle">Find us at Thissa Wewa junction or reach out to secure a reservation.</p>
+
+        <div class="contact-container glass">
+            <div class="contact-card">
+                <h3 style="font-size: 2rem; color: var(--accent-orange); font-family: 'Playfair Display', serif;">Kompittu Restaurant & Bakers</h3>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="contact-info">
+                            <h4>Address</h4>
+                            <p>Thissa Wewa, Magazin Road Junction,<br>Anuradhapura 50000, Sri Lanka</p>
+                            <p style="margin-top: 5px; font-size: 0.85rem; color: var(--accent-gold); font-weight: 600;">89RJ+XM Anuradhapura</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div class="contact-info">
+                            <h4>Opening Hours</h4>
+                            <p>Open daily<br>Closes at 10:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fa-solid fa-wallet"></i></div>
+                        <div class="contact-info">
+                            <h4>Price Range</h4>
+                            <p>Rs 1 – 1,000 per person<br>Affordable Quality</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="contact-info">
+                            <h4>Phone Number</h4>
+                            <p>071 161 1894<br>Mobile Support Available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
+                    <a href="https://maps.app.goo.gl/txLKgsPmqnTP5dNi8" target="_blank" class="btn btn-primary">Open Google Maps <i class="fa-solid fa-map-location-dot"></i></a>
+                    <a href="tel:0711611894" class="btn btn-outline glass">Call Restaurant <i class="fa-solid fa-phone-volume"></i></a>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.4785721110594!2d80.3956272!3d8.3411036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afc899c753b81eb%3A0xb1fcfa3571d34c67!2sKompittu%20Restaurant%20%26%20Bakers!5e0!3m2!1sen!2slk!4v1690000000000!5m2!1sen!2slk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta reveal">
+        <h2>Ready to Taste Authentic Sri Lankan Flavours?</h2>
+        <p>Visit Kompittu Restaurant & Bakers and enjoy delicious food, fresh bakery treats, generous portions, and a memorable local dining experience.</p>
+        <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Visit Us Today <i class="fa-solid fa-calendar-days"></i></a>
+            <a href="https://maps.app.goo.gl/txLKgsPmqnTP5dNi8" target="_blank" class="btn btn-outline glass" style="color: #fff; border-color: #fff;">Get Directions <i class="fa-solid fa-location-arrow"></i></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo" style="display:flex; align-items:center; gap:12px;">
+                    <img src="logo.png" alt="Kompittu Restaurant & Bakers" loading="lazy">
+                    <span style="font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; background:linear-gradient(45deg,var(--accent-gold),var(--accent-orange)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Kompittu</span>
+                </div>
+                <p class="footer-tagline">"Authentic taste. Freshly prepared. Made with passion."</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; font-weight: 300;">Anuradhapura's premier culinary destination combining traditional Sri Lankan heritage with modern baking craftsmanship.</p>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Our Story</a></li>
+                    <li><a href="#menu">Our Food Menu</a></li>
+                    <li><a href="#reviews">Guest Reviews</a></li>
+                    <li><a href="#gallery">Interactive Gallery</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Contact & Location</h4>
+                <ul class="footer-links" style="pointer-events: none;">
+                    <li><span style="color: var(--text-muted); font-weight: 300;">Thissa Wewa, Magazin Road Junction, Anuradhapura, Sri Lanka</span></li>
+                    <li><span style="color: var(--text-muted); font-weight: 300;">Phone: 071 161 1894</span></li>
+                    <li><span style="color: var(--text-muted); font-weight: 300;">Daily: 6:00 AM - 10:00 PM</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kompittu Restaurant & Bakers. All Rights Reserved.</p>
+            <div style="display: flex; gap: 20px;">
+                <span><i class="fa-solid fa-location-dot"></i> Anuradhapura, Sri Lanka</span>
+                <span><i class="fa-solid fa-phone"></i> 071 161 1894</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <i class="fa-solid fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Image Error Handler Fallback to Unsplash (Robustness)
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = function() {
+                if (this.src.includes('Hero.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop';
+                } else if (this.src.includes('About.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=800&auto=format&fit=crop';
+                } else if (this.src.includes('menu_kothu.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('swordfish_kothu.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('egg_kottu.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('egg_roti.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1626132647523-66f5bf380027?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('pol_roti.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('rice_curry.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('veg_special.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('traditional_meal.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('vegi_rolls.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('malu_paan.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('homemade_cutlets.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1541532713592-79a0317b6b77?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('kimbula_bun.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop';
+                } else if (this.src.includes('menu_bakery.webp')) {
+                    this.src = 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop';
+                }
+            };
+        });
+
+        // 2 & 4. Performance-Optimized Scroll Handlers (Unified, Throttled & Passive)
+        const heroBg = document.getElementById('heroBg');
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        let scrollTickActive = false;
+
+        window.addEventListener('scroll', () => {
+            if (!scrollTickActive) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+
+                    // Navbar Scrolled & Back to Top Toggle
+                    if (scrollY > 80) {
+                        navbar.classList.add('scrolled');
+                        backToTop.classList.add('visible');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                        backToTop.classList.remove('visible');
+                    }
+
+                    // Hero Parallax effect (only runs when hero background is in viewport)
+                    if (scrollY <= window.innerHeight) {
+                        heroBg.style.transform = `translateY(${scrollY * 0.4}px) scale(1.05)`;
+                    }
+
+                    scrollTickActive = false;
+                });
+                scrollTickActive = true;
+            }
+        }, { passive: true });
+
+        // 3. Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Check local storage
+        const savedTheme = localStorage.getItem('kompittu-theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('kompittu-theme', newTheme);
+            updateIcon(newTheme);
+            
+            // Icon rotation animation
+            themeIcon.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                themeIcon.style.transition = 'none';
+                themeIcon.style.transform = 'rotate(0deg)';
+                setTimeout(() => themeIcon.style.transition = 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)', 50);
+            }, 300);
+        });
+
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fa-solid fa-sun';
+            } else {
+                themeIcon.className = 'fa-solid fa-moon';
+            }
+        }
+
+        // 5. Mobile Navigation Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        const navItems = navLinks.querySelectorAll('a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const menuIcon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                menuIcon.className = 'fa-solid fa-xmark';
+            } else {
+                menuIcon.className = 'fa-solid fa-bars';
+            }
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').className = 'fa-solid fa-bars';
+            });
+        });
+
+        // 6. Scroll Reveal Animations (using IntersectionObserver)
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Trigger counter animation if section has counters and has not been counted yet
+                    const counters = entry.target.querySelectorAll('.counter');
+                    if (counters.length > 0 && !entry.target.classList.contains('counted')) {
+                        animateCounters(counters);
+                        entry.target.classList.add('counted');
+                    }
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, {
+            threshold: 0.15,
+            rootMargin: "0px 0px -40px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 7. Animated Statistics Counters
+        function animateCounters(counters) {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // Animation duration in milliseconds
+                const increment = target / (duration / 16); // 60 updates per second
+                
+                let current = 0;
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current) + (target === 99 ? "%" : "+");
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target + (target === 99 ? "%" : "+");
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        // 8. Interactive 3D Card Hover Tilt Effect
+        const menuCards = document.querySelectorAll('.menu-card');
+        menuCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                if (window.innerWidth <= 991) return; // Disable tilt on mobile/tablets to prevent touch scroll conflicts
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+                // Calculate rotation angles
+                const angleX = (yc - y) / 12;
+                const angleY = (x - xc) / 12;
+                card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-8px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0)';
+            });
+        });
+
+        // 9. Review Carousel Auto-sliding / Touch support
+        const slider = document.getElementById('reviewsSlider');
+        let slideInterval;
+        
+        function startAutoSlide() {
+            slideInterval = setInterval(() => {
+                if (slider) {
+                    slider.scrollBy({ left: 410, behavior: 'smooth' });
+                    // Wrap back to beginning if we reached near the end
+                    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 15) {
+                        setTimeout(() => slider.scrollTo({ left: 0, behavior: 'smooth' }), 1000);
+                    }
+                }
+            }, 4500);
+        }
+        
+        startAutoSlide();
+        
+        // Pause carousel on user interaction
+        slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        slider.addEventListener('mouseleave', startAutoSlide);
+        slider.addEventListener('touchstart', () => clearInterval(slideInterval));
+        slider.addEventListener('touchend', startAutoSlide);
+
+        // 10. Lightbox popup
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+
+        // 11. Interactive Gallery Category Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and add to clicked
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    if (filterValue === 'all' || itemCategory === filterValue) {
+                        item.style.display = 'block';
+                        // Wait a fraction to trigger smooth fade-in
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        // Hide element completely after transition completes
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 400);
+                    }
+                });
+            });
+        });
+
+        // 12. Specialties Sub-Tabs Navigation
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const targetTab = btn.getAttribute('data-tab');
+
+                tabPanels.forEach(panel => {
+                    if (panel.id === targetTab) {
+                        panel.classList.add('active');
+                    } else {
+                        panel.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

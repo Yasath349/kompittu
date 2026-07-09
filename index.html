@@ -1176,6 +1176,13 @@
             :root {
                 --section-padding: 80px 20px;
             }
+
+            /* Force reveal animation completion on mobile viewports for reliability */
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
             
             /* Section padding reduction for mobile */
             .about, .menu, .reviews, .gallery, .contact, .cta {
